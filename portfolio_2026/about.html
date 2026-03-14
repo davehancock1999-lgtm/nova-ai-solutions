@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <title>About | Nova AI Solutions - David Hancock</title>
+    <style>
+
+        * {
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nova-container {
+            max-width: 900px;
+            width: 100%;
+            background: #050505;
+            border: 1px solid #004dff;
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nova-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0% transparent 70%);
+            pointer-events: none;
+        }
+
+        .milestone-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border: 1 px solid #004dff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .story-content {
+            margin-bottom: 40px;
+        }
+
+        .story-content p {
+            font-size: italic;
+            font-size: 1.25rem;
+            color: #cccccc;
+            margin-bottom: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .story-content strong {
+            color: #fff;
+            font-style: normal;
+            border-bottom: 1px solid #00d4ff;
+        }
+
+        .skill-tags {
+            margin-bottom: 50px;
+        }
+
+        .skill-tags span {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0 12px;
+            font-family: 'Courier New', 'Courier New', Courier, monospace;
+        }
+
+        .btn-connect {
+            display: inline-block;
+            background-color: #00d4ff;
+            color: #000;
+            padding: 18px 45px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-connect:hover {
+            background-color: #fff;
+            box-shadow: 0 0 25px #00d4ff;
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nova-container { padding: 40px 20px; }
+            .story-content p { font-size: 1.1rem; }
+        }
+
+        .nav-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="nav-back">← HOME</a>
+
+    <h2>My Portfolio Projects</h2>
+
+    <div class="project-list">
+        <ul>
+            <li><a href="bar.html">Bar Design</a></li>
+            <li><a href="boutique.html">Boutique Design</a></li>
+            <li><a href="caf.html">Café Concept</a></li>
+            <li><a href="restaurant.html">Restaurant Concept</a></li>
+            <li><a href="coworking.html">Law Firm Design</a></li>
+        </ul>
+    </div>
+
+    <hr>
+    <p><a href="../my_website/index.html">← Back to Main Home Page</a></p>
+
+
+
+    <div class="nova-container">
+        <div class="milestone-badge">Dec '25: Zero Laptop Experience → Mar '26: AI Engineer</div>
+
+        <h1>David Hancock</h1>
+        <p class="tagline">Founder of Nova AI Solutions</p>
+
+        <div class="story-content">
+            <p>
+                "In December 2025, I had never even touched a laptop. Today, I build custom, locally hosted AI ecosystems and high-end digital interfaces. My journey from zero technical background to<strong>AI Engineering Trainee</strong> in just over four months is a testament to my obsession with high-velocity learning and technical problem-solving. I just don't use technology; I build the architecture behind it."
+            </p>
+
+            <p>
+                "Through my venture, <strong>Nova AI Solutions</strong>, I specialize in bridging the gap between advanced backend intelligence and elegant frontend design. I am a 'Full-Stack AI Architect' who understands both the 'Brain' (AI Logic) and the 'Face' (User Experience) of a product."
+            </p>
+
+            <p>
+                "The future of business isn't just about 'going digital'-it's about going <strong>Intelligent</strong>. My goal is to empower business with AI tools that are private, personal and powerful, wrapped in world class design."
+            </p>
+        </div>
+
+        <div class="skill-tags">
+            <span>#Private_AI</span>
+            <span>#Ollama_Expert</span>
+            <span>#Python_Automation</span>
+            <span>#Premium_UX</span>
+        </div>
+
+        
+    </div>
+</body>    
+</html>

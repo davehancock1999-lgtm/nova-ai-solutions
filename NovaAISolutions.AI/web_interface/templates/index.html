@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nova AI Solutions</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-card { width: 400px; height: 600px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; overflow: hidden; }
+        .header { background: #0078ff; color: white; padding: 20px; text-align: center; font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; }
+        .messages { flex: 1; padding: 20px; overflow-y: auto; background:#ffffff; display: flex; flex-direction: column; gap: 10px; }
+        .msg { padding: 10px 15px; border-radius: 18px; max-width: 75%; font-size: 14px; line-height: 1.4; position: relative; }
+        .ai { background: #e4e6eb; color: #050505; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .user { background: #0078ff; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .input-area { border-top: 1px solid #eee; padding: 15px; display: flex; gap: 10px; background: white; }
+        input { flex: 1; border: 1px solid #ddd; border-radius: 25px; padding: 12px 18px; outline: none; font-size: 14px; transition: border 0.3s; }
+        input:focus { border-color: #0078ff; }
+        button { background: #0078ff; color: white; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: transform 0.2s; }
+        button:hover { transform: scale(1.05); background: #006ae0; }
+        .nav-back { position: absolute; top: 20px; left: 20px; color: #000; text-decoration: none; font-weight: bold; z-index: 9999; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-back">← HOME</a>
+    <div class="chat-card">
+        <div class="header">Nova Ai Assistant</div>
+        <div class="messages" id="chatbox">
+            <div class="msg ai">Hello! I am ready to help.</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Ask me something..." autocomplete="off">
+            
+            <button onclick="sendMessage()">→</button>
+        </div>
+    </div>
+
+    <script>
+
+        
+        async function sendMessage() {
+            alert("Button has been clicked!");
+            const input = document.getElementById('userInput');
+            const chatbox = document.getElementById('chatbox');
+            const message = input.value.trim();
+
+            if (message === "") return;
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user';
+            userDiv.innerText = message;
+            chatbox.appendChild(userDiv);
+
+            input.value ="";
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'msg ai';
+                aiDiv.innerText = data.response;
+                chatbox.appendChild(aiDiv);
+                chatbox.scrollTop = chatbox.scrollHeight;
+
+            } catch (err) {
+                const errDiv = document.createElement('div');
+                errDiv.className = 'msg ai';
+                errDiv.innerText = "Error: Is the Terminal running?";
+                chatbox.appendChild(errDiv);
+            }
+        }
+
+        document.getElementById('userInput').onkeypress = (e) => {
+            if (e.key === 'Enter') sendMessage();
+        };
+    
+    
+        
+    </script>
+
+</body>    
+</html>

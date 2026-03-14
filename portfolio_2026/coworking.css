@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.hero-section {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+.main-title {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 4.5rem;
+    background: linear-gradient(to bottom, #cfb53b, #f7ef8a, #ae8625);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-family: sans-serif;
+    color: white;
+    letter-spacing: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.gold-button {
+    text-decoration: none;
+    color: #cfb53b;
+    border: 1px solid #cfb53b;
+    padding: 12px 30px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+.gold-button:hover {
+    background: #cfb53b;
+    color: black;
+}
+
+.law-firm-intro {
+    padding: 100px 20px;
+    background-color: #ffffff;
+}
+
+.firm-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.firm-title {
+    font-family: "Georgia", serif;
+    font-size: 2.8rem;
+    color: #1a2a3a;
+    margin-bottom: 20px;
+}
+
+.firm-description {
+    font-family: "Helvetica", sans-serif;
+    color: #555555;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.office-showcase {
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.office-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.image-badge {
+    background: #1a2a3a;
+    color: white;
+    padding: 15px 25px;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.firm-features {
+    display: flex;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    flex: 1;
+    padding: 40px 20px;
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.feature-card h3 {
+    font-family: 'Georgia', serif;
+    margin-bottom: 15px;
+    color: #1a2a3a;
+}
+
+.feature-card p {
+    font-family: sans-serif;
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
