@@ -1,3 +1,4 @@
+import os
 from knowledge_loader import load_client_knowledge
 from memory import search_memory
 import requests
@@ -45,7 +46,8 @@ def ask_ai(user_question):
         response = requests.post(
             "https://api.groq.com/openai/v1/chat/completions",
             headers={
-                 "Authorization": f"Bearer", 
+                 "Authorization": f"Bearer {os.getenv('GROQ_API_KEY')}",
+                 
                  "Content-Type": "application/json"
             },
             json={
