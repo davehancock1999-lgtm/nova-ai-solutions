@@ -6,87 +6,114 @@
     <title>Nova AI Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000; color: #40E0D0; font-family: sans-serif; margin: 0; padding: 20px; }
-        .neon-border { border: 1px solid #40E0D0; box-shadow: 0 0 10px #40E0D0; }
-        .neon-text { text-shadow: 0 0 8px #40E0D0; }
-        .nav-link { color: #40E0D0; text-decoration: none; font-weight: bold; font-size: 14px; }
-        .portfolio-card { background: #111; border: 1px solid #333; padding: 20px; border-radius: 8px; display: block; text-decoration: none; color: inherit; margin-bottom: 10px; }
-        .portfolio-card:hover { border-color: #40E0D0; }
+        body { background-color: #000; color: #40E0D0; font-family: sans-serif; }
+        .neon-text { text-shadow: 0 0 10px #40E0D0, 0 0 20px #40E0D0; }
+        .card { background: #111; border: 1px solid #222; padding: 20px; border-radius: 10px; transition: 0.3s; }
+        .card:hover { border-color: #40E0D0; transform: translateY(-5px); }
     </style>
 </head>
-<body>
+<body class="p-6">
 
-    <!-- Header & Nav -->
-    <nav style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-        <div class="neon-text" style="font-size: 24px; font-weight: bold;">NOVA AI</div>
-        <div style="display: flex; gap: 20px;">
-            <a href="about.html" class="nav-link">About</a>
-            <a href="caf.html" class="nav-link">Contact</a>
+    <nav class="flex justify-between mb-20 text-sm font-bold uppercase tracking-widest">
+        <div class="text-xl neon-text">NOVA AI</div>
+        <div class="space-x-6">
+            <a href="index.html" class="hover:text-white">Home</a>
+            <a href="about.html" class="hover:text-white">About</a>
+            <a href="portfolio.html" class="hover:text-white">Portfolio</a>
         </div>
     </nav>
 
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h1 class="neon-text" style="font-size: 45px; font-weight: 900; margin-bottom: 10px;">Nova AI Solutions</h1>
-        <p style="color: #888; font-style: italic;">Smart Websites. Intelligent Automation.</p>
-    </div>
+    <header class="text-center mb-20">
+        <h1 class="text-6xl font-black neon-text mb-4">Nova AI Solutions</h1>
+        <p class="text-xl text-gray-400">Smart Websites. Intelligent Automation.</p>
+    </header>
 
-    <!-- Portfolio Links (Direct to your files) -->
-    <div style="max-width: 500px; margin: 0 auto 100px auto;">
-        <h2 style="margin-bottom: 20px; font-weight: bold; border-bottom: 1px solid #222; padding-bottom: 10px;">Our Portfolio</h2>
-        <a href="boutique.html" class="portfolio-card">
-            <h3 style="color: #40E0D0; font-weight: bold;">Boutique AI →</h3>
-            <p style="font-size: 12px; color: #777;">Retail automation and smart tracking.</p>
-        </a>
-        <a href="coworking.html" class="portfolio-card">
-            <h3 style="color: #40E0D0; font-weight: bold;">Co-Working AI →</h3>
-            <p style="font-size: 12px; color: #777;">Space management and member bots.</p>
-        </a>
-        <a href="restaurant.html" class="portfolio-card">
-            <h3 style="color: #40E0D0; font-weight: bold;">Restaurant Bot →</h3>
-            <p style="font-size: 12px; color: #777;">Automated booking systems.</p>
-        </a>
-    </div>
-
-    <!-- Chat Bot (Fixed to Bottom) -->
-    <div id="chat-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: #000; border: 2px solid #40E0D0; border-radius: 12px; overflow: hidden; z-index: 9999;">
-        <div style="background: #40E0D0; color: #000; padding: 10px; font-weight: bold; text-align: center;">Nova Assistant</div>
-        <div id="chat-display" style="height: 200px; overflow-y: auto; padding: 10px; font-size: 13px; color: #fff; display: flex; flex-direction: column; gap: 8px;">
-            <div style="color: #40E0D0;"><b>Nova:</b> How can I help with your business today?</div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div class="card">
+            <h3 class="text-xl font-bold mb-2 text-white">Website Development</h3>
+            <p class="text-gray-500 text-sm">Custom, high-performance websites tailored to your brand identity and business needs.</p>
         </div>
-        <div style="display: flex; border-top: 1px solid #222;">
-            <input id="chat-input" type="text" style="flex: 1; background: #111; color: #fff; border: none; padding: 10px; outline: none;" placeholder="Type here...">
-            <button onclick="sendMsg()" style="background: #40E0D0; border: none; padding: 10px; font-weight: bold; cursor: pointer;">GO</button>
+        <div class="card">
+            <h3 class="text-xl font-bold mb-2 text-white">AI Automation</h3>
+            <p class="text-gray-500 text-sm">Smart AI solutions to streamline your business workflows and increase efficiency.</p>
+        </div>
+        <div class="card">
+            <h3 class="text-xl font-bold mb-2 text-white">Chatbot Integration</h3>
+            <p class="text-gray-500 text-sm">Engage your customers 24/7 with intelligent, custom-built AI assistants.</p>
+        </div>
+    </div>
+
+    <section id="about" class="mb-20 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold neon-text mb-6">About Us</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">
+            At Nova AI Solutions, we bridge the gap between human creativity and artificial intelligence. Our mission is to empower businesses with the tools they need to thrive in the digital age.
+        </p>
+        <p class="text-gray-400 leading-relaxed">
+            With expertise in web development and cutting-edge AI technologies, we create solutions that are not only functional but also future-proof.
+        </p>
+    </section>
+
+    <section id="contact" class="mb-20 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold neon-text mb-6">Contact Us</h2>
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-bold mb-2">Name</label>
+                <input type="text" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500">
+            </div>
+            <div>
+                <label class="block text-sm font-bold mb-2">Email</label>
+                <input type="email" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500">
+            </div>
+            <div>
+                <label class="block text-sm font-bold mb-2">Message</label>
+                <textarea rows="4" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500"></textarea>
+            </div>
+            <button class="bg-cyan-500 text-black font-bold py-3 px-8 rounded hover:bg-cyan-400 transition">Send Message</button>
+        </form>
+    </section>
+
+    <!-- CHATBOT WIDGET -->
+    <div class="fixed bottom-6 right-6 w-80 bg-zinc-900 border border-cyan-500 rounded-xl overflow-hidden shadow-2xl">
+        <div class="bg-cyan-600 p-3 text-black font-bold flex justify-between">
+            <span>Nova Bot</span>
+        </div>
+        <div id="chat-box" class="h-64 p-4 overflow-y-auto text-sm text-white space-y-2 bg-black">
+            <p class="text-cyan-400"><strong>Nova:</strong> Hello! How can I assist you today?</p>
+        </div>
+        <div class="p-3 border-t border-zinc-800 flex bg-zinc-900">
+            <input id="user-input" type="text" placeholder="Ask me something..." class="bg-black text-white p-2 w-full outline-none border border-zinc-800 rounded">
+            <button onclick="sendMessage()" class="bg-cyan-500 text-black px-4 font-bold ml-2 rounded hover:bg-cyan-400">Go</button>
         </div>
     </div>
 
     <script>
-        async function sendMsg() {
-            const input = document.getElementById('chat-input');
-            const display = document.getElementById('chat-display');
-            const val = input.value.trim();
-            if(!val) return;
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = input.value.trim();
+            if (!message) return;
 
-            display.innerHTML += `<div style="text-align: right;"><b>You:</b> ${val}</div>`;
+            chatBox.innerHTML += `<p class="text-right text-white"><strong>You:</strong> ${message}</p>`;
             input.value = '';
 
             try {
-                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-                    method: 'POST',
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer gsk_W1PZwgp4CIapfFaPVN1LWGdyb3FYLFePs0scyOF0QWv9'
+                        "Authorization": "Bearer gsk_W1PZwgp4CIapfFaPVN1LWGdyb3FYLFePs0scyOF0QWv9",
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        model: 'llama3-8b-8192',
-                        messages: [{role: 'user', content: val}]
+                        model: "llama3-8b-8192",
+                        messages: [{ role: "user", content: message }]
                     })
                 });
                 const data = await response.json();
-                const reply = data.choices[0].message.content;
-                display.innerHTML += `<div style="color: #40E0D0;"><b>Nova:</b> ${reply}</div>`;
-                display.scrollTop = display.scrollHeight;
-            } catch(e) {
-                display.innerHTML += `<div style="color: red; font-size: 10px;">Error connecting to AI.</div>`;
+                const botReply = data.choices[0].message.content;
+                chatBox.innerHTML += `<p class="text-left text-cyan-400"><strong>Nova:</strong> ${botReply}</p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                chatBox.innerHTML += `<p class="text-red-500"><strong>Nova:</strong> Error connecting.</p>`;
             }
         }
     </script>
