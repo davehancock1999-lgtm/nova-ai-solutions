@@ -1,125 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova AI Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #000; color: #40E0D0; font-family: sans-serif; overflow-x: hidden; }
-        .neon-text { text-shadow: 0 0 10px #40E0D0, 0 0 20px #40E0D0; }
-        .card { background: #111; border: 1px solid #222; padding: 25px; border-radius: 10px; transition: 0.3s; height: 100%; }
-        .card:hover { border-color: #40E0D0; transform: translateY(-5px); }
-        .input-style { background: #050505; border: 1px solid #222; color: white; padding: 10px; border-radius: 5px; width: 100%; outline: none; font-size: 12px; }
-        .input-style:focus { border-color: #40E0D0; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova AI Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan: #00d4ff;
+      --cyan-glow: #00d4ff;
+      --bg: #0a0a0a;
+      --card-bg: #111111;
+      --text: #ffffff;
+      --text-muted: #cccccc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      padding: 18px 30px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    nav a:first-child { font-weight: 700; font-size: 1.05rem; }
+    nav a:hover { opacity: 0.75; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      font-weight: 900;
+      color: var(--cyan);
+      text-shadow:
+        0 0 20px rgba(0, 212, 255, 0.9),
+        0 0 40px rgba(0, 212, 255, 0.6),
+        0 0 80px rgba(0, 212, 255, 0.3);
+      line-height: 1.15;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 3.5vw, 1.25rem);
+      color: var(--cyan);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 44px;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--cyan);
+      color: #000;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 16px 52px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0,212,255,0.5), 0 0 40px rgba(0,212,255,0.2);
+      transition: box-shadow 0.2s, transform 0.15s;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(0,212,255,0.8), 0 0 60px rgba(0,212,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      padding: 80px 24px 60px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-header { margin-bottom: 12px; }
+    .section-header h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      color: var(--text);
+      font-weight: 700;
+    }
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-top: 20px;
+      border: 1px solid #1e1e1e;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .service-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-3px);
+    }
+    .service-card h3 {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      line-height: 1.65;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 60px 24px 40px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #about h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    #about p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 60px 24px 160px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #contact h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .contact-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #333;
+      padding: 14px 4px;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 6px;
+      transition: border-color 0.2s;
+    }
+    .contact-input::placeholder { color: #555; }
+    .contact-input:focus { border-bottom-color: var(--cyan); }
+
+    textarea.contact-input {
+      resize: vertical;
+      min-height: 100px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 14px 12px;
+      margin-top: 8px;
+    }
+    textarea.contact-input:focus { border-color: var(--cyan); }
+
+    .contact-wrapper { display: flex; flex-direction: column; gap: 8px; }
+
+    /* ── NOVA BOT BUTTON ── */
+    #nova-bot-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 999;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #1a7fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      box-shadow: 0 4px 20px rgba(26,127,255,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #nova-bot-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(26,127,255,0.7);
+    }
+
+    /* ── CHAT WIDGET ── */
+    #nova-chat {
+      display: none;
+      position: fixed;
+      bottom: 100px;
+      right: 16px;
+      z-index: 998;
+      width: min(360px, calc(100vw - 32px));
+      background: #111;
+      border: 1px solid #1e3a5f;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      flex-direction: column;
+    }
+    #nova-chat.open { display: flex; }
+
+    .chat-header {
+      background: #1a7fff;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .chat-header span { font-size: 1.4rem; }
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .chat-messages {
+      padding: 16px;
+      height: 260px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .msg.bot {
+      background: #1e2a3a;
+      color: #ddd;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .msg.user {
+      background: #1a7fff;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-row {
+      display: flex;
+      border-top: 1px solid #1e1e1e;
+    }
+    .chat-input-row input {
+      flex: 1;
+      background: #0d0d0d;
+      border: none;
+      padding: 14px 16px;
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .chat-input-row input::placeholder { color: #444; }
+    .chat-send {
+      background: #1a7fff;
+      border: none;
+      padding: 0 18px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-send:hover { background: #0066ee; }
+
+    /* ── CHAT WITH ME BAR ── */
+    #chat-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 997;
+      background: #0a0a0a;
+      border-top: 1px solid #1a1a1a;
+      padding: 14px;
+      text-align: center;
+    }
+    #chat-bar button {
+      background: none;
+      border: none;
+      color: var(--cyan);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+    #chat-bar button:hover { opacity: 0.75; }
+
+    /* ── NOVA BOT FULL PAGE ── */
+    #nova-bot-page {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg);
+      flex-direction: column;
+    }
+    #nova-bot-page.open { display: flex; }
+
+    .bot-page-header {
+      background: #1a7fff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .bot-page-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .bot-page-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bot-page-input-row {
+      display: flex;
+      border-top: 1px solid #1e1e1e;
+      padding: 10px;
+      gap: 10px;
+    }
+    .bot-page-input-row input {
+      flex: 1;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      outline: none;
+    }
+    .bot-page-input-row input:focus { border-color: var(--cyan); }
+    .bot-page-send {
+      background: #1a7fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+  </style>
 </head>
-<body class="p-6">
+<body>
 
-    <nav class="flex justify-between items-center mb-20 text-sm font-bold uppercase tracking-widest">
-        <div class="text-xl neon-text">NOVA AI</div>
-        <div class="space-x-8 text-gray-500">
-            <a href="index.html" class="hover:text-white transition">Home</a>
-            <a href="about.html" class="hover:text-white transition">About</a>
-            <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
-            <a href="caf.html" class="hover:text-white transition">Contact</a>
-        </div>
-    </nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#contact">Contact</a>
+    <a href="#services">Portfolio</a>
+    <a href="#" id="open-nova-page">Nova Bot</a>
+  </nav>
 
-    <header class="text-center mb-32">
-        <h1 class="text-6xl font-black neon-text mb-6">Nova AI Solutions</h1>
-        <p class="text-xl text-gray-400 italic tracking-wide">Smart Websites. Intelligent Automation. Real Business Growth.</p>
-    </header>
+  <!-- HERO -->
+  <section id="home">
+    <h1 class="hero-title">Nova AI<br>Solutions</h1>
+    <p class="hero-sub">Smart Websites. Intelligent Automation. Real Business Growth</p>
+    <a href="#services" class="btn-primary">Get Started</a>
+  </section>
 
-    <section id="services" class="mb-32">
-        <h2 class="text-2xl font-bold neon-text mb-10 text-center uppercase tracking-widest">Our Expertise</h2>
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="card">
-                <h3 class="text-white text-lg font-bold mb-4">Website Development</h3>
-                <p class="text-gray-500 text-xs leading-relaxed">We build high-performance, responsive websites that serve as the digital foundation for your brand. Every site is optimized for speed, SEO, and conversion.</p>
-            </div>
-            <div class="card">
-                <h3 class="text-white text-lg font-bold mb-4">AI Automation</h3>
-                <p class="text-gray-500 text-xs leading-relaxed">Streamline your operations with custom AI workflows. From lead generation to data processing, we automate the repetitive so you can focus on growth.</p>
-            </div>
-            <div class="card">
-                <h3 class="text-white text-lg font-bold mb-4">Custom AI Chatbots</h3>
-                <p class="text-gray-500 text-xs leading-relaxed">Deploy intelligent 24/7 assistants that understand your business. Our bots handle customer inquiries, bookings, and support with human-like precision.</p>
-            </div>
-        </div>
-    </section>
-        <section id="about" class="mb-32 max-w-4xl mx-auto px-4 border-t border-zinc-900 pt-20">
-        <h2 class="text-3xl font-bold neon-text mb-8">About the Agency</h2>
-        <div class="text-gray-400 text-sm space-y-6 leading-relaxed">
-            <p>Nova AI Solutions was founded on the principle that cutting-edge technology should be accessible to businesses of all sizes. We don't just build tools; we build strategic advantages.</p>
-            <p>Our team specializes in the intersection of modern web design and large language models. We ensure that your business stays ahead of the curve in an increasingly automated world.</p>
-        </div>
-    </section>
-
-    <section id="contact" class="mb-40 max-w-2xl mx-auto px-4">
-        <h2 class="text-3xl font-bold neon-text mb-8">Contact Us</h2>
-        <form class="space-y-6">
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">Full Name</label>
-                <input type="text" class="input-style" placeholder="John Doe">
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">Email Address</label>
-                <input type="email" class="input-style" placeholder="email@example.com">
-            </div>
-            <div>
-                <label class="block text-[10px] font-bold uppercase tracking-[0.2em] mb-2 text-gray-500">Message</label>
-                <textarea rows="4" class="input-style" placeholder="How can we help?"></textarea>
-            </div>
-            <button class="bg-cyan-500 text-black font-black py-3 px-10 rounded text-[11px] uppercase tracking-widest hover:bg-cyan-400 transition-all w-full md:w-auto">Send Proposal</button>
-        </form>
-    </section>
-
-    <div class="fixed bottom-6 right-6 w-80 bg-zinc-950 border border-cyan-500 rounded-2xl overflow-hidden shadow-2xl z-50">
-        <div class="bg-cyan-600 p-4 text-black font-bold flex justify-between text-[11px] uppercase tracking-widest">
-            <span>Nova AI Assistant</span>
-            <span class="animate-pulse">● Online</span>
-        </div>
-        <div id="chat-box" class="h-64 p-5 overflow-y-auto text-[12px] text-white space-y-4 bg-black scrollbar-hide">
-            <p class="text-cyan-400 italic">Nova: Hello. I am the Nova AI. How can I assist your business today?</p>
-        </div>
-        <div class="p-3 border-t border-zinc-900 flex bg-zinc-950">
-            <input id="user-input" type="text" placeholder="Type here..." class="bg-black text-white p-2 w-full text-xs outline-none border border-zinc-800 rounded-lg">
-            <button onclick="sendMessage()" class="bg-cyan-500 text-black px-4 font-bold ml-2 rounded-lg text-xs hover:bg-cyan-400 transition-all">GO</button>
-        </div>
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <h2>Welcome to My Professional Services</h2>
+      <p>Providing top-quality solutions for clients</p>
     </div>
 
-    <script>
-        async function sendMessage() {
-            const input = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
-            const msg = input.value.trim();
-            if (!msg) return;
+    <div class="service-card">
+      <h3>Website Development</h3>
+      <p>Professional websites that generate leads, increase credibility, and support business growth.</p>
+    </div>
 
-            chatBox.innerHTML += `<div class="text-right"><strong>You:</strong> ${msg}</div>`;
-            input.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
+    <div class="service-card">
+      <h3>AI Automation</h3>
+      <p>AI-powered automation systems to handle repetitive tasks, improve response times, and make your business smarter.</p>
+    </div>
 
-            try {
-                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": "Bearer gsk_W1PZwgp4CIapfFaPVN1LWGdyb3FYLFePs0scyOF0QWv9",
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        model: "llama3-8b-8192",
-                        messages: [{ role: "user", content: msg }]
-                    })
-                });
-                const data = await response.json();
-                const reply = data.choices[0].message.content;
-                chatBox.innerHTML += `<div class="text-left text-cyan-400"><strong>Nova:</strong> ${reply}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            } catch (error) {
-                chatBox.innerHTML += `<div class="text-red-500 text-[10px]">Connection Error.</div>`;
-            }
-        }
-    </script>
+    <div class="service-card">
+      <h3>Workflow Optimisation</h3>
+      <p>Redesign and automate your processes to reduce manual work and improve efficiency</p>
+    </div>
+
+    <div class="service-card">
+      <h3>Business Process Automation</h3>
+      <p>Eliminate repetitive tasks with automated workflows connecting your website, email, and internal systems</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <p>I help small and growing businesses modernise their online presence and optimise operations through smart web development and automation solutions.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-wrapper">
+      <input type="text" class="contact-input" placeholder="Your Name" />
+      <input type="email" class="contact-input" placeholder="Your Email" />
+      <textarea class="contact-input" placeholder="Your Message"></textarea>
+    </div>
+  </section>
+
+  <!-- CHAT WITH ME BAR -->
+  <div id="chat-bar">
+    <button onclick="toggleChat()">Chat With Me</button>
+  </div>
+
+  <!-- NOVA BOT FLOATING BUTTON -->
+  <button id="nova-bot-btn" onclick="toggleChat()" title="Nova Bot">🤖</button>
+
+  <!-- NOVA CHAT WIDGET -->
+  <div id="nova-chat">
+    <div class="chat-header">
+      <span>🤖</span> Nova Bot
+      <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot">Hi! I'm Nova 👋 How can I help you today?</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendMsg()" />
+      <button class="chat-send" onclick="sendMsg()">➤</button>
+    </div>
+  </div>
+
+  <!-- NOVA BOT FULL PAGE -->
+  <div id="nova-bot-page">
+    <div class="bot-page-header">
+      <span>🤖</span> Nova Bot
+      <button class="bot-page-close" id="close-nova-page">×</button>
+    </div>
+    <div class="bot-page-messages" id="bot-page-messages">
+      <div class="msg bot">Hello! I'm Nova, your AI assistant for Nova AI Solutions. Ask me anything about our services!</div>
+    </div>
+    <div class="bot-page-input-row">
+      <input type="text" id="bot-page-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendPageMsg()" />
+      <button class="bot-page-send" onclick="sendPageMsg()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChat() {
+      const chat = document.getElementById('nova-chat');
+      chat.classList.toggle('open');
+    }
+
+    const replies = [
+      "Great question! Nova AI Solutions specialises in smart websites and intelligent automation.",
+      "We'd love to help your business grow! Head to the Contact section to get in touch.",
+      "Our AI Automation service can save you hours every week by handling repetitive tasks.",
+      "Website development, AI automation, workflow optimisation — we do it all!",
+      "Feel free to reach out via the contact form and Dave will get back to you shortly.",
+    ];
+    let replyIdx = 0;
+
+    function botReply(container) {
+      setTimeout(() => {
+        const msg = document.createElement('div');
+        msg.className = 'msg bot';
+        msg.textContent = replies[replyIdx % replies.length];
+        replyIdx++;
+        container.appendChild(msg);
+        container.scrollTop = container.scrollHeight;
+      }, 700);
+    }
+
+    function sendMsg() {
+      const input = document.getElementById('chat-input');
+      const container = document.getElementById('chat-messages');
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = document.createElement('div');
+      msg.className = 'msg user';
+      msg.textContent = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+      input.value = '';
+      botReply(container);
+    }
+
+    function sendPageMsg() {
+      const input = document.getElementById('bot-page-input');
+      const container = document.getElementById('bot-page-messages');
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = document.createElement('div');
+      msg.className = 'msg user';
+      msg.textContent = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+      input.value = '';
+      botReply(container);
+    }
+
+    document.getElementById('open-nova-page').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('nova-bot-page').classList.add('open');
+    });
+    document.getElementById('close-nova-page').addEventListener('click', function() {
+      document.getElementById('nova-bot-page').classList.remove('open');
+    });
+  </script>
 </body>
 </html>
