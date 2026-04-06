@@ -16,7 +16,7 @@
 
     <nav class="flex justify-between mb-20 text-sm font-bold uppercase tracking-widest">
         <div class="text-xl neon-text">NOVA AI</div>
-        <div class="space-x-6">
+        <div class="space-x-6 text-gray-400">
             <a href="index.html" class="hover:text-white">Home</a>
             <a href="about.html" class="hover:text-white">About</a>
             <a href="portfolio.html" class="hover:text-white">Portfolio</a>
@@ -30,59 +30,57 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
         <div class="card">
-            <h3 class="text-xl font-bold mb-2 text-white">Website Development</h3>
-            <p class="text-gray-500 text-sm">Custom, high-performance websites tailored to your brand identity and business needs.</p>
+            <h3 class="text-xl font-bold mb-2">Website Development</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Custom, high-performance websites tailored to your brand identity and business needs. We ensure your digital presence is modern and effective.</p>
         </div>
         <div class="card">
-            <h3 class="text-xl font-bold mb-2 text-white">AI Automation</h3>
-            <p class="text-gray-500 text-sm">Smart AI solutions to streamline your business workflows and increase efficiency.</p>
+            <h3 class="text-xl font-bold mb-2">AI Automation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Smart AI solutions designed to streamline your business workflows, reduce manual tasks, and increase overall efficiency.</p>
         </div>
         <div class="card">
-            <h3 class="text-xl font-bold mb-2 text-white">Chatbot Integration</h3>
-            <p class="text-gray-500 text-sm">Engage your customers 24/7 with intelligent, custom-built AI assistants.</p>
+            <h3 class="text-xl font-bold mb-2">Chatbot Integration</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Engage your customers 24/7 with intelligent, custom-built AI assistants that handle inquiries and improve user experience.</p>
         </div>
     </div>
 
-    <section id="about" class="mb-20 max-w-4xl mx-auto">
+    <section id="about" class="mb-20 max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold neon-text mb-6">About Us</h2>
-        <p class="text-gray-400 leading-relaxed mb-4">
-            At Nova AI Solutions, we bridge the gap between human creativity and artificial intelligence. Our mission is to empower businesses with the tools they need to thrive in the digital age.
-        </p>
-        <p class="text-gray-400 leading-relaxed">
-            With expertise in web development and cutting-edge AI technologies, we create solutions that are not only functional but also future-proof.
-        </p>
+        <div class="text-gray-400 text-sm space-y-4 leading-relaxed">
+            <p>At Nova AI Solutions, we bridge the gap between human creativity and artificial intelligence. Our mission is to empower businesses with the tools they need to thrive in the digital age.</p>
+            <p>With expertise in web development and cutting-edge AI technologies, we create solutions that are not only functional but also future-proof, ensuring long-term success for our clients.</p>
+        </div>
     </section>
 
-    <section id="contact" class="mb-20 max-w-4xl mx-auto">
+    <section id="contact" class="mb-20 max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold neon-text mb-6">Contact Us</h2>
-        <form class="space-y-4">
+        <form class="space-y-6">
             <div>
-                <label class="block text-sm font-bold mb-2">Name</label>
-                <input type="text" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500">
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">Name</label>
+                <input type="text" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white text-sm outline-none focus:border-cyan-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-bold mb-2">Email</label>
-                <input type="email" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500">
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">Email</label>
+                <input type="email" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white text-sm outline-none focus:border-cyan-500 transition">
             </div>
             <div>
-                <label class="block text-sm font-bold mb-2">Message</label>
-                <textarea rows="4" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white outline-none focus:border-cyan-500"></textarea>
+                <label class="block text-xs font-bold uppercase tracking-widest mb-2">Message</label>
+                <textarea rows="4" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded text-white text-sm outline-none focus:border-cyan-500 transition"></textarea>
             </div>
-            <button class="bg-cyan-500 text-black font-bold py-3 px-8 rounded hover:bg-cyan-400 transition">Send Message</button>
+            <button class="bg-cyan-500 text-black font-bold py-3 px-10 rounded text-sm hover:bg-cyan-400 transition uppercase tracking-widest">Send Message</button>
         </form>
     </section>
 
     <!-- CHATBOT WIDGET -->
     <div class="fixed bottom-6 right-6 w-80 bg-zinc-900 border border-cyan-500 rounded-xl overflow-hidden shadow-2xl">
-        <div class="bg-cyan-600 p-3 text-black font-bold flex justify-between">
+        <div class="bg-cyan-600 p-3 text-black font-bold flex justify-between text-xs">
             <span>Nova Bot</span>
         </div>
-        <div id="chat-box" class="h-64 p-4 overflow-y-auto text-sm text-white space-y-2 bg-black">
-            <p class="text-cyan-400"><strong>Nova:</strong> Hello! How can I assist you today?</p>
+        <div id="chat-box" class="h-64 p-4 overflow-y-auto text-[13px] text-white space-y-3 bg-black">
+            <p class="text-cyan-400 italic">Nova: Hello! How can I assist you today?</p>
         </div>
         <div class="p-3 border-t border-zinc-800 flex bg-zinc-900">
-            <input id="user-input" type="text" placeholder="Ask me something..." class="bg-black text-white p-2 w-full outline-none border border-zinc-800 rounded">
-            <button onclick="sendMessage()" class="bg-cyan-500 text-black px-4 font-bold ml-2 rounded hover:bg-cyan-400">Go</button>
+            <input id="user-input" type="text" placeholder="Type a message..." class="bg-black text-white p-2 w-full text-xs outline-none border border-zinc-800 rounded">
+            <button onclick="sendMessage()" class="bg-cyan-500 text-black px-4 font-bold ml-2 rounded text-xs hover:bg-cyan-400">Go</button>
         </div>
     </div>
 
@@ -93,7 +91,7 @@
             const message = input.value.trim();
             if (!message) return;
 
-            chatBox.innerHTML += `<p class="text-right text-white"><strong>You:</strong> ${message}</p>`;
+            chatBox.innerHTML += `<div class="text-right text-white"><strong>You:</strong> ${message}</div>`;
             input.value = '';
 
             try {
@@ -110,10 +108,10 @@
                 });
                 const data = await response.json();
                 const botReply = data.choices[0].message.content;
-                chatBox.innerHTML += `<p class="text-left text-cyan-400"><strong>Nova:</strong> ${botReply}</p>`;
+                chatBox.innerHTML += `<div class="text-left text-cyan-400"><strong>Nova:</strong> ${botReply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             } catch (error) {
-                chatBox.innerHTML += `<p class="text-red-500"><strong>Nova:</strong> Error connecting.</p>`;
+                chatBox.innerHTML += `<div class="text-red-500 text-xs italic">Nova: Error connecting to server.</div>`;
             }
         }
     </script>
