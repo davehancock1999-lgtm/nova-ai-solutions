@@ -13,10 +13,16 @@ export default function LeadCapture() {
     setStatus('sending');
     setErrorMsg('');
     try {
+      const payload = JSON.stringify({
+        name: String(name).trim(),
+        email: String(email).trim(),
+        business: String(business).trim(),
+        plan: String(plan).trim(),
+      });
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, business, plan }),
+        body: payload,
       });
       const data = await res.json();
       if (res.ok) {
@@ -48,18 +54,30 @@ export default function LeadCapture() {
             placeholder="YOUR NAME"
             value={name}
             onChange={e => setName(e.target.value)}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
           />
           <input
             placeholder="YOUR EMAIL"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
           />
           <input
             placeholder="BUSINESS NAME"
             value={business}
             onChange={e => setBusiness(e.target.value)}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
             style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
           />
           <select
