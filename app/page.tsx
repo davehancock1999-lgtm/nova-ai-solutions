@@ -1,7 +1,7 @@
 "use client";
 import ChatDemo from './ChatDemo';
 import Pricing from './Pricing';
-
+import LeadCapture from './LeadCapture';
 export default function Home() {
   return (
     <main style={{ backgroundColor: '#000', minHeight: '100vh', color: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px', fontFamily: 'sans-serif' }}>
@@ -27,6 +27,7 @@ export default function Home() {
       </div>
 
       <Pricing />
+      <LeadCapture />
     </main>
   );
 }
