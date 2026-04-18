@@ -12,14 +12,35 @@ export default function ChatDemo() {
     const newMsgs = [...messages, { role: 'user', content: input }];
     setMessages(newMsgs);
     setInput('');
-    
+
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: newMsgs }),
     });
-    const data = await res.json();
-    setMessages([...newMsgs, data]);
+
+    const reader = res.body!.getReader();
+    const decoder = new TextDecoder();
+    let reply = '';
+
+    setMessages([...newMsgs, { role: 'assistant', content: '' }]);
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n').filter(l => l.startsWith('data: '));
+      for (const line of lines) {
+        const json = line.replace('data: ', '');
+        if (json === '[DONE]') break;
+        try {
+          const parsed = JSON.parse(json);
+          const token = parsed.choices?.[0]?.delta?.content || '';
+          reply += token;
+          setMessages([...newMsgs, { role: 'assistant', content: reply }]);
+        } catch {}
+      }
+    }
   };
 
   return (
