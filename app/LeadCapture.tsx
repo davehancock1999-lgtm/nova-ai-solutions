@@ -55,6 +55,7 @@ export default function LeadCapture() {
           </select>
 
           <button
+            type="button"         
             onClick={submit}
             disabled={status === 'sending'}
             style={{ width: "100%", padding: "16px", background: "#06b6d4", border: "none", color: "#000", fontSize: "12px", fontWeight: "900", letterSpacing: "4px", cursor: "pointer", fontFamily: "'Courier New', monospace" }}
