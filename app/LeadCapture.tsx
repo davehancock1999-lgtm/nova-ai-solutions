@@ -13,7 +13,8 @@ export default function LeadCapture() {
     setStatus('sending');
     setErrorMsg('');
     try {
-      const res = await fetch('/api/lead', {
+      const res = await fetch(`${window.location.origin}/api/lead`, {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, business, plan }),
