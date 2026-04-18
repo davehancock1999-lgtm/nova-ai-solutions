@@ -13,8 +13,7 @@ export default function LeadCapture() {
     setStatus('sending');
     setErrorMsg('');
     try {
-      const res = await fetch(`${window.location.origin}/api/lead`, {
-
+      const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, business, plan }),
@@ -40,23 +39,49 @@ export default function LeadCapture() {
       </h2>
       {status === 'sent' ? (
         <div style={{ border: "1px solid #06b6d4", padding: "40px", textAlign: "center", maxWidth: "500px" }}>
-          <p style={{ color: "#06b6d4", fontSize: "14px", letterSpacing: "3px" }}>✓ MESSAGE RECEIVED</p>
-          <p style={{ color: "#666", fontSize: "13px", marginTop: "10px" }}>We'll be in touch within 24 hours.</p>
+          <p style={{ color: "#06b6d4", fontSize: "14px", letterSpacing: "3px" }}>MESSAGE RECEIVED</p>
+          <p style={{ color: "#666", fontSize: "13px", marginTop: "10px" }}>We will be in touch within 24 hours.</p>
         </div>
       ) : (
         <div style={{ width: "100%", maxWidth: "500px", border: "1px solid rgba(6,182,212,0.2)", padding: "40px", background: "rgba(6,182,212,0.02)" }}>
-          <input placeholder="YOUR NAME" value={name} onChange={e => setName(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }} />
-          <input placeholder="YOUR EMAIL" value={email} onChange={e => setEmail(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }} />
-          <input placeholder="BUSINESS NAME" value={business} onChange={e => setBusiness(e.target.value)} style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }} />
-          <select value={plan} onChange={e => setPlan(e.target.value)} style={{ width: "100%", background: "#000", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#06b6d4", padding: "12px 0", marginBottom: "32px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none" }}>
+          <input
+            placeholder="YOUR NAME"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
+          />
+          <input
+            placeholder="YOUR EMAIL"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
+          />
+          <input
+            placeholder="BUSINESS NAME"
+            value={business}
+            onChange={e => setBusiness(e.target.value)}
+            style={{ width: "100%", background: "transparent", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#fff", padding: "12px 0", marginBottom: "24px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none", boxSizing: "border-box" }}
+          />
+          <select
+            value={plan}
+            onChange={e => setPlan(e.target.value)}
+            style={{ width: "100%", background: "#000", border: "none", borderBottom: "1px solid rgba(6,182,212,0.3)", color: "#06b6d4", padding: "12px 0", marginBottom: "32px", fontSize: "12px", letterSpacing: "2px", fontFamily: "'Courier New', monospace", outline: "none" }}
+          >
             <option>Starter</option>
             <option>Pro</option>
             <option>Agency</option>
           </select>
-          <button type="button" onClick={submit} disabled={status === 'sending'} style={{ width: "100%", padding: "16px", background: "#06b6d4", border: "none", color: "#000", fontSize: "12px", fontWeight: "900", letterSpacing: "4px", cursor: "pointer", fontFamily: "'Courier New', monospace" }}>
+          <button
+            type="button"
+            onClick={submit}
+            disabled={status === 'sending'}
+            style={{ width: "100%", padding: "16px", background: "#06b6d4", border: "none", color: "#000", fontSize: "12px", fontWeight: "900", letterSpacing: "4px", cursor: "pointer", fontFamily: "'Courier New', monospace" }}
+          >
             {status === 'sending' ? 'SENDING...' : 'REQUEST ACCESS'}
           </button>
-          {status === 'error' && <p style={{ color: "red", fontSize: "11px", marginTop: "10px", textAlign: "center" }}>{errorMsg || 'Something went wrong.'}</p>}
+          {status === 'error' && (
+            <p style={{ color: "red", fontSize: "11px", marginTop: "10px", textAlign: "center" }}>{errorMsg}</p>
+          )}
         </div>
       )}
     </section>
