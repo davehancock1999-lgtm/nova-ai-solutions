@@ -1,5 +1,6 @@
 "use client";
 import ChatDemo from './ChatDemo';
+import Pricing from './Pricing';
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <div style={{ height: '2px', width: '100px', background: '#00d1ff', margin: '20px auto' }}></div>
         <p style={{ color: '#00d1ff', letterSpacing: '8px', fontSize: '0.7rem', textTransform: 'uppercase', fontWeight: 'bold' }}>Intelligence Reinvented // Route6 Pilot</p>
       </div>
-      
+
       <ChatDemo />
 
       <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', maxWidth: '800px', textAlign: 'left', borderTop: '1px solid #111', paddingTop: '40px' }}>
@@ -24,6 +25,8 @@ export default function Home() {
           <p style={{ fontSize: '0.85rem', color: '#666', lineHeight: '1.6' }}>The 1p revolution. Bypassing fees to secure the community legacy. Status: Active.</p>
         </div>
       </div>
+
+      <Pricing />
     </main>
   );
 }
