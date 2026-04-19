@@ -6,10 +6,15 @@ export default function LeadCapture() {
   const [email, setEmail] = useState('');
   const [business, setBusiness] = useState('');
   const [plan, setPlan] = useState('Starter');
+  const [agreed, setAgreed] = useState(false);
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   const submit = async () => {
+    if (!agreed) {
+      setErrorMsg('You must agree to the Terms of Service to continue.');
+      return;
+    }
     setStatus('sending');
     setErrorMsg('');
     try {
@@ -18,6 +23,8 @@ export default function LeadCapture() {
         email: String(email).trim(),
         business: String(business).trim(),
         plan: String(plan).trim(),
+        agreedToTerms: true,
+        agreedAt: new Date().toISOString(),
       });
       const res = await fetch('/api/lead', {
         method: 'POST',
@@ -89,14 +96,33 @@ export default function LeadCapture() {
             <option>Pro</option>
             <option>Agency</option>
           </select>
+
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "24px" }}>
+            <input
+              type="checkbox"
+              id="terms"
+              checked={agreed}
+              onChange={e => setAgreed(e.target.checked)}
+              style={{ marginTop: "2px", accentColor: "#06b6d4", cursor: "pointer", width: "16px", height: "16px", flexShrink: 0 }}
+            />
+            <label htmlFor="terms" style={{ color: "#9ca3af", fontSize: "11px", letterSpacing: "1px", lineHeight: "1.6", cursor: "pointer" }}>
+              I agree to the Nova AI Solutions{" "}
+              <span style={{ color: "#06b6d4", textDecoration: "underline", cursor: "pointer" }}>Terms of Service</span>
+              {" "}and{" "}
+              <span style={{ color: "#06b6d4", textDecoration: "underline", cursor: "pointer" }}>Privacy Policy</span>
+              . I understand this constitutes a legally binding electronic signature under the UK Electronic Communications Act 2000.
+            </label>
+          </div>
+
           <button
             type="button"
             onClick={submit}
             disabled={status === 'sending'}
-            style={{ width: "100%", padding: "16px", background: "#06b6d4", border: "none", color: "#000", fontSize: "12px", fontWeight: "900", letterSpacing: "4px", cursor: "pointer", fontFamily: "'Courier New', monospace" }}
+            style={{ width: "100%", padding: "16px", background: agreed ? "#06b6d4" : "rgba(6,182,212,0.3)", border: "none", color: agreed ? "#000" : "#666", fontSize: "12px", fontWeight: "900", letterSpacing: "4px", cursor: agreed ? "pointer" : "not-allowed", fontFamily: "'Courier New', monospace", transition: "all 0.2s ease" }}
           >
             {status === 'sending' ? 'SENDING...' : 'REQUEST ACCESS'}
           </button>
+
           {status === 'error' && (
             <p style={{ color: "red", fontSize: "11px", marginTop: "10px", textAlign: "center" }}>{errorMsg}</p>
           )}
