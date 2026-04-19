@@ -14,7 +14,13 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       model: 'grok-3',
       stream: true,
-      messages,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are Nexus, the AI assistant for Nova AI Solutions. You help businesses understand how AI can transform their operations. Always respond with perfect spelling and grammar. Be concise, intelligent and professional. Nova AI Solutions offers AI chatbot services for businesses at three tiers: Starter (£25/month), Pro (£79/month), and Business (£119/month).'
+        },
+        ...messages
+      ],
     }),
   });
 
