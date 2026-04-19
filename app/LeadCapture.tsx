@@ -107,9 +107,9 @@ export default function LeadCapture() {
             />
             <label htmlFor="terms" style={{ color: "#9ca3af", fontSize: "11px", letterSpacing: "1px", lineHeight: "1.6", cursor: "pointer" }}>
               I agree to the Nova AI Solutions{" "}
-              <span style={{ color: "#06b6d4", textDecoration: "underline", cursor: "pointer" }}>Terms of Service</span>
+              <a href="/terms" style={{ color: "#06b6d4", textDecoration: "underline" }}>Terms of Service</a>
               {" "}and{" "}
-              <span style={{ color: "#06b6d4", textDecoration: "underline", cursor: "pointer" }}>Privacy Policy</span>
+              <a href="/privacy" style={{ color: "#06b6d4", textDecoration: "underline" }}>Privacy Policy</a>
               . I understand this constitutes a legally binding electronic signature under the UK Electronic Communications Act 2000.
             </label>
           </div>
